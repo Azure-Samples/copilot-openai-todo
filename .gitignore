@@ -1,0 +1,19 @@
+# compiled output
+node_modules/
+dist/
+
+# Logs
+logs
+*.log
+npm-debug.log*
+pnpm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+
+# Other
+.DS_Store
+TODO
+
+# Env files
+/.env*

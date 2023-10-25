@@ -1,0 +1,26 @@
+{
+  "name": "copilot-nodejs-todo",
+  "version": "1.0.0",
+  "description": "A sample application demonstrating Copilot assistance for developing a Node.js app with a CosmosDB database and deployed on Azure App Service",
+  "private": true,
+  "scripts": {
+    "dev": "concurrently npm:dev:* --kill-others",
+    "dev:server": "npm start --workspace=server",
+    "dev:client": "npm start --workspace=client",
+    "start": "node packages/server/lib/server.js",
+    "test": "npm test --workspace=server",
+    "build": "npm run build --workspaces"
+  },
+  "author": "Yohan Lasorsa",
+  "license": "MIT",
+  "workspaces": [
+    "packages/*"
+  ],
+  "devDependencies": {
+    "concurrently": "^7.6.0"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=8.0.0"
+  }
+}

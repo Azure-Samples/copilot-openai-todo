@@ -1,0 +1,29 @@
+##################################################################
+# VS Code with REST Client extension is needed to use this file.
+# Download at: https://aka.ms/vscode/rest-client
+##################################################################
+
+@api_host = http://localhost:3000
+@user_id = test123
+@task_id = 123
+
+### Get all tasks for a user
+GET {{api_host}}/api/users/{{user_id}}/tasks
+
+### Create task
+POST {{api_host}}/api/users/{{user_id}}/tasks
+content-type: application/json
+
+{ "title": "test API" }
+
+### Get task
+GET {{api_host}}/api/tasks/{{task_id}}
+
+### Update task
+PATCH {{api_host}}/api/tasks/{{task_id}}
+content-type: application/json
+
+{ "completed": true }
+
+### Delete task
+DELETE {{api_host}}/api/tasks/{{task_id}}
