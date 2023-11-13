@@ -51,6 +51,9 @@ param principalId string = ''
 @description('Use Application Insights for monitoring and performance tracing')
 param useApplicationInsights bool = false
 
+param cosmosAccountName string = ''
+param cosmosDatabaseName string = ''
+
 param allowedOrigin string
 
 // Differentiates between automated and manual deployments
@@ -178,6 +181,36 @@ module openAi 'core/ai/cognitiveservices.bicep' = {
   }
 }
 
+param containers array = [
+  {
+    name: 'TodoList'
+    id: 'TodoList'
+    partitionKey: '/id'
+  }
+  {
+    name: 'TodoItem'
+    id: 'TodoItem'
+    partitionKey: '/id'
+  }
+]
+
+// Because databaseName is optional in main.bicep, we make sure the database name is set here.
+var defaultDatabaseName = 'Todo'
+var actualDatabaseName = !empty(cosmosDatabaseName) ? cosmosDatabaseName : defaultDatabaseName
+
+module cosmos './core/database/cosmos-sql-db.bicep' = {
+  scope: resourceGroup
+  name: 'cosmos-sql'
+  params: {
+    accountName: !empty(cosmosAccountName) ? cosmosAccountName : '${abbrs.documentDBDatabaseAccounts}todo-${resourceToken}'
+    location: location
+    tags: tags
+    containers: containers
+    databaseName: actualDatabaseName
+    principalIds: [principalId, serverApi.outputs.identityPrincipalId]
+  }
+}
+
 // USER ROLES
 module openAiRoleUser 'core/security/role.bicep' = if (!isContinuousDeployment) {
   scope: openAiResourceGroup
@@ -213,6 +246,10 @@ output AZURE_OPENAI_SERVICE string = openAi.outputs.name
 output AZURE_OPENAI_RESOURCE_GROUP string = openAiResourceGroup.name
 output AZURE_OPENAI_CHATGPT_DEPLOYMENT string = chatGptDeploymentName
 output AZURE_OPENAI_CHATGPT_MODEL string = chatGptModelName
+
+output AZURE_COSMOS_ACCOUNT_NAME string = cosmos.outputs.accountName
+output AZURE_COSMOS_DB_NAME string = cosmos.outputs.databaseName
+output AZURE_COSMOS_DB_ENDPOINT string = cosmos.outputs.endpoint
 
 output CLIENT_URI string = webApp.outputs.uri
 output SERVER_API_URI string = serverApi.outputs.uri

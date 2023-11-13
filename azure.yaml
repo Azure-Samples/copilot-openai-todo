@@ -21,4 +21,4 @@ services:
     language: ts
     host: containerapp
     docker:
-      context: .
+      context: ../..

@@ -5,7 +5,6 @@ param location string = resourceGroup().location
 param tags object = {}
 
 param containers array = []
-param keyVaultName string
 param principalIds array = []
 
 module cosmos './cosmos-account.bicep' = {
@@ -15,7 +14,6 @@ module cosmos './cosmos-account.bicep' = {
     location: location
     tags: tags
     kind: 'GlobalDocumentDB'
-    keyVaultName: keyVaultName
   }
 }
 
