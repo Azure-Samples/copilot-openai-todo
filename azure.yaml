@@ -1,0 +1,24 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/Azure/azure-dev/main/schemas/v1.0/azure.yaml.json
+
+name: copilot-openai-todo
+
+services:
+  client:
+    project: ./packages/client
+    dist: dist
+    language: ts
+    host: staticwebapp
+    hooks:
+      predeploy:
+        posix:
+          shell: sh
+          run: export SERVER_API_URI && npm run build
+          interactive: true
+          continueOnError: false
+
+  server:
+    project: ./packages/server
+    language: ts
+    host: containerapp
+    docker:
+      context: .
