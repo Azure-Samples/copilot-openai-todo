@@ -97,10 +97,10 @@
           },
           "configurations": {
             "production": {
-              "browserTarget": "todo-app:build:production"
+              "buildTarget": "todo-app:build:production"
             },
             "development": {
-              "browserTarget": "todo-app:build:development"
+              "buildTarget": "todo-app:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -108,7 +108,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "todo-app:build"
+            "buildTarget": "todo-app:build"
           }
         }
       }
