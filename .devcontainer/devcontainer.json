@@ -7,15 +7,22 @@
 
 	// Features to add to the dev container. More info: https://containers.dev/features.
 	"features": {
-		"ghcr.io/devcontainers/features/azure-cli:1": {},
-		"ghcr.io/devcontainers/features/github-cli:1": {}
+		"ghcr.io/devcontainers/features/docker-in-docker:2": {
+      "moby": "false"
+    },
+		"ghcr.io/devcontainers/features/azure-cli:1": {
+			"version": "latest",
+      "installBicep": true
+		},
+		"ghcr.io/devcontainers/features/github-cli:1": {},
+		"ghcr.io/azure/azure-dev/azd:latest": {}
 	},
 
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
 	"forwardPorts": [3000, 4444],
 
 	// Use 'postCreateCommand' to run commands after the container is created.
-	"postCreateCommand": "npm i -g npm@latest fuzz-run @moaw/cli && npm ci",
+	"postCreateCommand": "npm i -g npm@latest fuzz-run @moaw/cli && npm install",
 
 	// Configure tool-specific properties.
 	"customizations": {
@@ -31,6 +38,11 @@
 				"IronGeek.vscode-env"
 			]
 		}
+	},
+
+	// Set minimal host requirements for the container.
+	"hostRequirements": {
+		"memory": "8gb"
 	}
 
 	// Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
