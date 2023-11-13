@@ -3,7 +3,7 @@
 {
 	"name": "Node.js",
 	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
-	"image": "mcr.microsoft.com/devcontainers/javascript-node:0-18",
+	"image": "mcr.microsoft.com/devcontainers/javascript-node:18-bullseye",
 
 	// Features to add to the dev container. More info: https://containers.dev/features.
 	"features": {
@@ -26,10 +26,9 @@
 				"humao.rest-client",
 				"ms-azuretools.vscode-bicep",
 				"ms-azuretools.vscode-cosmosdb",
-				"ms-azuretools.vscode-azureappservice",
+				"ms-azuretools.vscode-bicep",
 				"EditorConfig.EditorConfig",
-				"IronGeek.vscode-env",
-				"timonwong.shellcheck"
+				"IronGeek.vscode-env"
 			]
 		}
 	}
