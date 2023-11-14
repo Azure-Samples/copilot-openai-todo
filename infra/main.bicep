@@ -183,19 +183,14 @@ module openAi 'core/ai/cognitiveservices.bicep' = {
 
 param containers array = [
   {
-    name: 'TodoList'
-    id: 'TodoList'
-    partitionKey: '/id'
-  }
-  {
-    name: 'TodoItem'
-    id: 'TodoItem'
+    name: 'tasks'
+    id: 'tasks'
     partitionKey: '/id'
   }
 ]
 
 // Because databaseName is optional in main.bicep, we make sure the database name is set here.
-var defaultDatabaseName = 'Todo'
+var defaultDatabaseName = 'todo'
 var actualDatabaseName = !empty(cosmosDatabaseName) ? cosmosDatabaseName : defaultDatabaseName
 
 module cosmos './core/database/cosmos-sql-db.bicep' = {
@@ -246,6 +241,7 @@ output AZURE_OPENAI_SERVICE string = openAi.outputs.name
 output AZURE_OPENAI_RESOURCE_GROUP string = openAiResourceGroup.name
 output AZURE_OPENAI_CHATGPT_DEPLOYMENT string = chatGptDeploymentName
 output AZURE_OPENAI_CHATGPT_MODEL string = chatGptModelName
+output AZURE_OPENAI_ENDPOINT string = '${openAi.outputs.endpoint}openai/deployments/chat/${chatGptDeploymentName}/completions?api-version=2023-05-15'
 
 output AZURE_COSMOS_ACCOUNT_NAME string = cosmos.outputs.accountName
 output AZURE_COSMOS_DB_NAME string = cosmos.outputs.databaseName
