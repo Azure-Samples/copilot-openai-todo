@@ -5,9 +5,11 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
-    "watch": "ng build --watch --configuration development"
+    "watch": "ng build --watch --configuration development",
+    "setenv": "node scripts/set-env.js"
   },
   "private": true,
+  "type": "module",
   "dependencies": {
     "@angular/common": "^17.0.2",
     "@angular/compiler": "^17.0.2",
