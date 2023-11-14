@@ -14,7 +14,7 @@ import { AddTask } from './add-task';
   imports: [CommonModule, TaskAddComponent, TaskListComponent, TaskFilterComponent, LoaderComponent],
   template: `
     <h1>TODO</h1>
-    <app-task-add (added)="addTask($event)"></app-task-add>
+    <app-task-add (added)="addTask($event)" [disabled]="loading"></app-task-add>
     <app-loader [loading]="loading"></app-loader>
     <app-task-list [tasks]="tasks" (toggleCompleted)="toggleTaskCompleted($event)"></app-task-list>
     <app-task-filter [filter]="currentFilter" (filterChange)="filterTasks($event)"></app-task-filter>

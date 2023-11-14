@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AddTask } from './add-task';
 
@@ -8,10 +8,10 @@ import { AddTask } from './add-task';
   imports: [CommonModule],
   template: `
     <div class="input-container">
-      <input type="text" placeholder="What needs to be done?" (change)="addTask($event)" />
+      <input type="text" placeholder="What needs to be done?" (change)="addTask($event)" [disabled]="disabled"/>
     </div>
     <label>
-      <input type="checkbox" name="aiPlanner" (change)="toggleAIPlanner($event)">
+      <input type="checkbox" (change)="toggleAIPlanner($event)" [disabled]="disabled">
       Enable AI Planner
     </label>
   `,
@@ -42,6 +42,10 @@ import { AddTask } from './add-task';
       width: 100%;
       margin: 0;
     }
+
+    label:has(input[disabled]) {
+      color: #ccc;
+    }
     
     input::placeholder {
       color: #ccc;
@@ -50,6 +54,7 @@ import { AddTask } from './add-task';
   `]
 })
 export class TaskAddComponent {
+  @Input() disabled: boolean = false;
   @Output() added = new EventEmitter<AddTask>();
 
   useAIPlanner: boolean = false;
