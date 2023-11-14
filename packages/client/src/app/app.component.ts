@@ -5,6 +5,7 @@ import { getTasks, addTask, setTaskCompleted, TaskFilter } from './task.service'
 import { TaskFilterComponent } from './task-filter.component';
 import { TaskAddComponent } from './task-add.component';
 import { TaskListComponent } from './task-list.component';
+import { AddTask } from './add-task';
 
 @Component({
   selector: 'app-root',
@@ -83,8 +84,8 @@ export class AppComponent {
     this.tasks = await getTasks(this.currentFilter);
   }
 
-  async addTask(description: string) {
-    await addTask(description);
+  async addTask(data: AddTask) {
+    await addTask(data.title, data.useAiPlanner);
     await this.updateTasks();
   }
 

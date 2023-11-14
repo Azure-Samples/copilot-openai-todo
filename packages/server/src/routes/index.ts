@@ -1,6 +1,7 @@
 import express from 'express';
 import { Task } from '../models/task';
 import { DbService } from '../services/db';
+import { TaskPlannerService } from '../services/planner';
 
 const router = express.Router();
 
@@ -23,6 +24,7 @@ router.get('/users/:userId/tasks', async function(req, res) {
 router.post('/users/:userId/tasks', async function(req, res) {
   try {
     const { userId } = req.params;
+    const { useAiPlanner } = req.body;
     const task = {
       ...req.body,
       userId,
@@ -34,9 +36,23 @@ router.post('/users/:userId/tasks', async function(req, res) {
       return res.status(400).json({ error: 'Task title is required' });
     }
 
-    await DbService.getInstance().createTask(task);
+    if (useAiPlanner) {
+      const planner = await TaskPlannerService.getInstance();
+      const plan = await planner.planTasks(task.title);
+      const tasks = plan.tasks.map(task => ({
+        title: task,
+        userId,
+        completed: false
+      }));
+      for (const task of tasks) {
+        await DbService.getInstance().createTask(task);
+      }
+      res.json(tasks);
+    } else {
+      await DbService.getInstance().createTask(task);
+      res.json(task);
+    }
 
-    res.json(task);
   } catch (error: any) {
     res.status(500).json({ error: error?.message || 'Internal server error' });
   }

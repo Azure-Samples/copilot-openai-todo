@@ -1,4 +1,5 @@
 // Import Cosmos SDK and task model
+import { DefaultAzureCredential } from "@azure/identity";
 import { Container, CosmosClient, Database } from "@azure/cosmos";
 import { Task } from "../models/task";
 
@@ -33,19 +34,18 @@ export class DbService {
 
   constructor() {
     // Check that the environment variables are set
-    if (!process.env.COSMOS_ENDPOINT) {
-      throw new Error("COSMOS_ENDPOINT is not set");
+    if (!process.env.AZURE_COSMOS_DB_ENDPOINT) {
+      throw new Error("AZURE_COSMOS_DB_ENDPOINT is not set");
     }
-    if (!process.env.COSMOS_KEY) {
-      throw new Error("COSMOS_KEY is not set");
-    }
+    // Create a credential instance
+    const credential = new DefaultAzureCredential();
 
     // Connect to the database
     this.client = new CosmosClient({
-      endpoint: process.env.COSMOS_ENDPOINT,
-      key: process.env.COSMOS_KEY
+      endpoint: process.env.AZURE_COSMOS_DB_ENDPOINT,
+      aadCredentials: credential
     });
-    this.database = this.client.database("todos");
+    this.database = this.client.database("todo");
     this.container = this.database.container("tasks");
   }
 
@@ -85,7 +85,7 @@ export class DbService {
   async updateTask(task: Task): Promise<Task | undefined> {
     // Update the task in the database
     const { resource: updatedItem } = await this.container
-      .item(task.id)
+      .item(task.id || '')
       .replace(task);
 
     // Return the updated task

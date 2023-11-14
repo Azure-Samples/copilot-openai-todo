@@ -32,14 +32,18 @@ export async function getTasks(filter: TaskFilter = TaskFilter.All): Promise<Tas
   }
 }
 
-export async function addTask(title: string) {
+export async function addTask(title: string, useAiPlanner?: boolean) {
   const response = await fetch(`${apiUrl}/users/${userId}/tasks/`, {
     method: 'POST',
-    body: JSON.stringify({ title }),
+    body: JSON.stringify({ title, useAiPlanner }),
     headers: { 'Content-Type': 'application/json' }
   });
-  const task = await response.json() as Task;
-  tasks?.push(task);
+  const result = await response.json();
+  if (Array.isArray(result)) {
+    tasks?.push(...result);
+  } else {
+    tasks?.push(result);
+  }
 }
 
 export async function setTaskCompleted(task: Task, completed: boolean) {

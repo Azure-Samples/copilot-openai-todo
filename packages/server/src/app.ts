@@ -1,6 +1,8 @@
 import express from 'express';
 import pino from 'pino-http';
 import router from './routes/index';
+import dotenv from 'dotenv';
+dotenv.config({ path: '../../.env' });
 
 const app = express();
 
