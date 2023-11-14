@@ -1,13 +1,12 @@
 {
-  "name": "copilot-nodejs-todo",
+  "name": "copilot-openai-todo",
   "version": "1.0.0",
-  "description": "A sample application demonstrating Copilot assistance for developing a Node.js app with a CosmosDB database and deployed on Azure App Service",
+  "description": "A sample application demonstrating Copilot assistance for developing a Node.js app with a CosmosDB database, OpenAI and deployed on Azure",
   "private": true,
   "scripts": {
-    "dev": "concurrently npm:dev:* --kill-others",
-    "dev:server": "npm start --workspace=server",
-    "dev:client": "npm start --workspace=client",
-    "start": "node packages/server/lib/server.js",
+    "start": "concurrently npm:dev:* --kill-others",
+    "start:server": "npm start --workspace=server",
+    "start:client": "npm start --workspace=client",
     "test": "npm test --workspace=server",
     "build": "npm run build --workspaces"
   },
