@@ -44,13 +44,15 @@ router.post('/users/:userId/tasks', async function(req, res) {
         userId,
         completed: false
       }));
+      const createdTasks = [];
       for (const task of tasks) {
         await DbService.getInstance().createTask(task);
+        createdTasks.push(task);
       }
-      res.json(tasks);
+      res.json(createdTasks);
     } else {
-      await DbService.getInstance().createTask(task);
-      res.json(task);
+      const createdTask = await DbService.getInstance().createTask(task);
+      res.json(createdTask);
     }
 
   } catch (error: any) {
