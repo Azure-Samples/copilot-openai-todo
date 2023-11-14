@@ -185,7 +185,7 @@ param containers array = [
   {
     name: 'tasks'
     id: 'tasks'
-    partitionKey: '/id'
+    partitionKey: '/_partitionKey'
   }
 ]
 
