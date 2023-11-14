@@ -5,15 +5,17 @@ import { getTasks, addTask, setTaskCompleted, TaskFilter } from './task.service'
 import { TaskFilterComponent } from './task-filter.component';
 import { TaskAddComponent } from './task-add.component';
 import { TaskListComponent } from './task-list.component';
+import { LoaderComponent } from './loader.component';
 import { AddTask } from './add-task';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, TaskAddComponent, TaskListComponent, TaskFilterComponent],
+  imports: [CommonModule, TaskAddComponent, TaskListComponent, TaskFilterComponent, LoaderComponent],
   template: `
     <h1>TODO</h1>
     <app-task-add (added)="addTask($event)"></app-task-add>
+    <app-loader [loading]="loading"></app-loader>
     <app-task-list [tasks]="tasks" (toggleCompleted)="toggleTaskCompleted($event)"></app-task-list>
     <app-task-filter [filter]="currentFilter" (filterChange)="filterTasks($event)"></app-task-filter>
   `,
@@ -37,6 +39,7 @@ import { AddTask } from './add-task';
   `],
 })
 export class AppComponent {
+  loading: boolean = false;
   tasks: Task[] = [];
   currentFilter: TaskFilter = TaskFilter.All;
   routes: Record<string, any> = {
@@ -55,7 +58,7 @@ export class AppComponent {
     const routeData = this.routes[path];
     if (!routeData) {
       // Fallback route
-      return this.navigate('/tasks/all');
+      return this.navigate('/tasks/active');
     }
   
     document.title = `Todo - ${routeData.title}`;
@@ -81,12 +84,16 @@ export class AppComponent {
   }
 
   async updateTasks() {
+    this.loading = true;
     this.tasks = await getTasks(this.currentFilter);
+    this.loading = false;
   }
 
   async addTask(data: AddTask) {
+    this.loading = true;
     await addTask(data.title, data.useAiPlanner);
     await this.updateTasks();
+    this.loading = false;
   }
 
   async toggleTaskCompleted(task: Task) {
