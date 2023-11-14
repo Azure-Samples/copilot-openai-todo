@@ -97,4 +97,15 @@ export class DbService {
     // Delete the task from the database
     await this.container.item(id).delete();
   }
+
+  // Delete all tasks for a user
+  async deleteTasks(userId: string): Promise<void> {
+    // Get all tasks for the user
+    const tasks = await this.getTasks(userId);
+
+    // Delete each task
+    for (const task of tasks) {
+      await this.deleteTask(task.id || '');
+    }
+  }
 }
