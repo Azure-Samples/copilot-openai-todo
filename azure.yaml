@@ -5,7 +5,7 @@ name: copilot-openai-todo
 services:
   client:
     project: ./packages/client
-    dist: dist
+    dist: dist/browser
     language: ts
     host: staticwebapp
     hooks:

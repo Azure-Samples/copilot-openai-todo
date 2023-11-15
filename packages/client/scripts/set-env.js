@@ -2,7 +2,7 @@ import fs from 'node:fs/promises';
 
 const targetPath = './dist';
 const replacements = [
-  { key: '$SERVER_API_URL', value: process.env.SERVER_API_URL ?? '' },
+  { key: '$SERVER_API_URI', value: process.env.SERVER_API_URI ?? '' },
 ]
 
 async function replaceInFile(filePath) {

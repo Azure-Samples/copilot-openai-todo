@@ -63,6 +63,7 @@ var abbrs = loadJsonContent('abbreviations.json')
 var resourceToken = toLower(uniqueString(subscription().id, environmentName, location))
 var tags = { 'azd-env-name': environmentName }
 var allowedOrigins = empty(allowedOrigin) ? [webApp.outputs.uri] : [webApp.outputs.uri, allowedOrigin]
+var openAiEndpoint = '${openAi.outputs.endpoint}openai/deployments/chat/${chatGptDeploymentName}/completions?api-version=2023-05-15'
 
 // Organize resources in a resource group
 resource resourceGroup 'Microsoft.Resources/resourceGroups@2021-04-01' = {
@@ -134,16 +135,16 @@ module serverApi './core/host/container-app.bicep' = {
     ] : []
     env: concat([
       {
-        name: 'AZURE_OPENAI_CHATGPT_DEPLOYMENT'
-        value: chatGptDeploymentName
+        name: 'AZURE_COSMOS_DB_ENDPOINT'
+        value: cosmos.outputs.endpoint
+      }
+      {
+        name: 'AZURE_OPENAI_ENDPOINT'
+        value: openAiEndpoint
       }
       {
         name: 'AZURE_OPENAI_CHATGPT_MODEL'
         value: chatGptModelName
-      }
-      {
-        name: 'AZURE_OPENAI_SERVICE'
-        value: openAi.outputs.name
       }
     ], useApplicationInsights ? [{
       name: 'APPLICATIONINSIGHTS_CONNECTION_STRING'
@@ -202,6 +203,15 @@ module cosmos './core/database/cosmos-sql-db.bicep' = {
     tags: tags
     containers: containers
     databaseName: actualDatabaseName
+  }
+}
+
+module cosmosRoles './core/database/cosmos-roles.bicep' = {
+  scope: resourceGroup
+  name: 'cosmos-roles'
+  params: {
+    accountName: cosmos.outputs.accountName
+    databaseName: cosmos.outputs.databaseName
     principalIds: [principalId, serverApi.outputs.identityPrincipalId]
   }
 }
@@ -241,7 +251,7 @@ output AZURE_OPENAI_SERVICE string = openAi.outputs.name
 output AZURE_OPENAI_RESOURCE_GROUP string = openAiResourceGroup.name
 output AZURE_OPENAI_CHATGPT_DEPLOYMENT string = chatGptDeploymentName
 output AZURE_OPENAI_CHATGPT_MODEL string = chatGptModelName
-output AZURE_OPENAI_ENDPOINT string = '${openAi.outputs.endpoint}openai/deployments/chat/${chatGptDeploymentName}/completions?api-version=2023-05-15'
+output AZURE_OPENAI_ENDPOINT string = openAiEndpoint
 
 output AZURE_COSMOS_ACCOUNT_NAME string = cosmos.outputs.accountName
 output AZURE_COSMOS_DB_NAME string = cosmos.outputs.databaseName
