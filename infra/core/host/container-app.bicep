@@ -35,6 +35,7 @@ resource app 'Microsoft.App/containerApps@2023-05-01' = {
         transport: 'auto'
         corsPolicy: {
           allowedOrigins: empty(allowedOrigins) ? ['*'] : allowedOrigins
+          allowedMethods: ['*']
         }
       }
       secrets: concat(secrets, [

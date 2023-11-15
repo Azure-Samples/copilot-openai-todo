@@ -62,7 +62,7 @@ param isContinuousDeployment bool = false
 var abbrs = loadJsonContent('abbreviations.json')
 var resourceToken = toLower(uniqueString(subscription().id, environmentName, location))
 var tags = { 'azd-env-name': environmentName }
-var allowedOrigins = empty(allowedOrigin) ? [webApp.outputs.uri] : [webApp.outputs.uri, allowedOrigin]
+var allowedOrigins = [] //empty(allowedOrigin) ? [webApp.outputs.uri] : [webApp.outputs.uri, allowedOrigin]
 var openAiEndpoint = '${openAi.outputs.endpoint}openai/deployments/chat/${chatGptDeploymentName}/completions?api-version=2023-05-15'
 
 // Organize resources in a resource group
