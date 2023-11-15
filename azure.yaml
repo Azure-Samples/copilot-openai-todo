@@ -12,7 +12,10 @@ services:
       predeploy:
         posix:
           shell: sh
-          run: export SERVER_API_URI && npm run build
+          run: |
+            npm run build
+            export SERVER_API_URI
+            npm run setenv
           interactive: true
           continueOnError: false
 
