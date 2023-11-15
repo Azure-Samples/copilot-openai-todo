@@ -8,7 +8,9 @@
     "build": "tsc",
     "watch": "tsc -w",
     "test": "jest",
-    "clean": "rimraf lib"
+    "clean": "rimraf lib",
+    "docker:build": "docker build --tag server --file ./Dockerfile ../..",
+    "docker:run": "docker run --rm --publish 3000:3000 server"
   },
   "dependencies": {
     "@azure/cosmos": "^4.0.0",
