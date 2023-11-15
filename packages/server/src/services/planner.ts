@@ -28,9 +28,9 @@ export class TaskPlannerService {
     // Init TypeChat
     const endpoint = process.env.AZURE_OPENAI_ENDPOINT;
     const model = createLanguageModel({
-      // TODO: why token not working?
-      AZURE_OPENAI_API_KEY: openAiToken,
-      AZURE_OPENAI_ENDPOINT: endpoint,
+      OPENAI_API_KEY: openAiToken,
+      OPENAI_ENDPOINT: endpoint,
+      OPENAI_MODEL: process.env.AZURE_OPENAI_CHATGPT_MODEL || "gpt-35-turbo",
     });
 
     const schema = fs.readFileSync(path.join(__dirname, "../models/task-planner-schema.ts"), "utf8");
