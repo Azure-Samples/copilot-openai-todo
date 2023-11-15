@@ -60,6 +60,15 @@ import { Task } from './task';
       border-width: 0 3px 3px 0;
       transform: rotate(45deg);
     }
+
+    input[type="checkbox"]:focus-visible {
+      outline: inherit;
+    }
+
+    input[type="checkbox"]:focus-visible::before {
+      outline-offset: 2px;
+      outline: 2px solid #29f;
+    }
   `],
 })
 export class TaskItemComponent {

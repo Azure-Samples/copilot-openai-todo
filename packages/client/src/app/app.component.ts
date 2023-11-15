@@ -31,10 +31,13 @@ import { AddTask } from './add-task';
 
     h1 {
       font-size: 5em;
-      color: #29f;
       text-transform: lowercase;
       font-weight: 100;
       margin: 20px 0;
+      color: #29f;
+      background: linear-gradient(to right, #29f, #7cf);
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
   `],
 })

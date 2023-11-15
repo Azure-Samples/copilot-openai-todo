@@ -23,6 +23,7 @@ import { TaskItemComponent } from './task-item.component';
       margin-bottom: 20px;
       background-color: #fff;
       box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+      overflow: auto;
     }
 
     .count {
