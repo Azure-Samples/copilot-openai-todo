@@ -21,7 +21,7 @@
       "value": "${AZURE_OPENAI_RESOURCE_GROUP}"
     },
     "openAiResourceGroupLocation": {
-      "value": "${AZURE_OPENAI_RESOURCE_GROUP_LOCATION=eastus}"
+      "value": "${AZURE_OPENAI_RESOURCE_GROUP_LOCATION=canadaeast}"
     },
     "openAiSkuName": {
       "value": "S0"
@@ -30,7 +30,7 @@
       "value": "${AZURE_WEBAPP_LOCATION=eastus2}"
     },
     "chatGptModelName": {
-      "value": "${AZURE_OPENAI_CHATGPT_MODEL=gpt-35-turbo}"
+      "value": "${AZURE_OPENAI_CHATGPT_MODEL=gpt-4}"
     },
     "chatGptModelVersion": {
       "value": "${AZURE_OPENAI_CHATGPT_MODEL_VERSION=0613}"
