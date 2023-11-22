@@ -5,8 +5,7 @@ jest.mock('@azure/cosmos');
 describe('DbService', () => {
   beforeAll(() => {
     // Set environment variables
-    process.env.COSMOS_ENDPOINT = 'dummy';
-    process.env.COSMOS_KEY = '123';
+    process.env.AZURE_COSMOS_DB_ENDPOINT = 'dummy';
 
     // Mock the Cosmos DB client
     const mockClient = {
@@ -107,5 +106,4 @@ describe('DbService', () => {
     const task = await dbService.deleteTask('123');
     expect(task).toEqual(undefined);
   });
-
 });
