@@ -1,6 +1,6 @@
 # 🤖 copilot-openai-todo
 
-TODO
+This project is an example Todo app implementation, that aims to showcase how to use [GitHub Copilot](https://copilot.github.com/) to build an AI-powered todo app using [Azure OpenAI](https://azure.microsoft.com/products/ai-services/openai-service) and [Azure Cosmos DB](https://azure.microsoft.com/services/cosmos-db/).
 
 ## Prerequisites
 - Node.js v18+
@@ -9,6 +9,12 @@ TODO
 You can use [GitHub Codespaces](https://github.com/features/codespaces) to work on this project directly from your browser: select the **Code** button, then the **Codespaces** tab and click on **Create Codespaces on main**.
 
 You can also use the [Dev Containers extension for VS Code](https://aka.ms/vscode/ext/devcontainer) to work locally using a ready-to-use dev environment.
+
+After you cloned or opened the project in your dev environment, run the following command to install the dependencies:
+
+```bash
+npm install
+```
 
 ## Project details
 
@@ -33,22 +39,51 @@ This command will build the client and server packages.
 
 ## How to setup deployment
 
+To provision the resources on Azure and deploy the services, we use the [Azure Dev CLI](https://learn.microsoft.com/azure/developer/azure-developer-cli/).
+
 ```bash
-./setup.sh
+# Only needed once
+azd auth login --use-device-code
+
+# Provision and deploy infrastructure
+azd up
 ```
 
-This command will ask you to log in into Azure and GitHub, then set up the `AZURE_CREDENTIALS` repository secrets for deployment.
+You can also provision and deploy the infrastructure separately:
+
+```bash
+# Provision infrastructure
+azd provision
+
+# Deploy infrastructure
+azd deploy
+```
 
 ## How to run locally
 
-```bash
-npm install
-npm run dev
+In order to run the application locally, you'll need to setup the following environment variables in a `.env` file at the root of the project with the following content:
+
+```sh
+AZURE_OPENAI_ENDPOINT=<your Azure OpenAI endpoint>
+AZURE_COSMOS_DB_ENDPOINT=<your Azure Cosmos DB endpoint>
 ```
 
-The application will then be available at http://localhost:4200.
+As the application rely on Azure services for the OpenAI completions and Cosmos DB storage, you'll need to provision these resources on Azure first (see [How to setup deployment](#how-to-setup-deployment)).
 
-> **Important note**: you need to set the environment variables `COSMOS_ENDPOINT` and `COSMOS_KEY` to a valid [Azure Cosmos DB](https://azure.microsoft.com/products/cosmos-db?WT.mc_id=javascript-0000-yolasors) instance for the server to work. You can use the [Try Cosmos](https://cosmos.azure.com/try/) website to get one for testing without the need to deploy one yourself (choose *Azure Cosmos DB for NoSQL*).
+Then, run the following commands to generate your `.env` file:
+```bash
+azd env get-values > .env
+```
+
+Once your `.env` file is ready, you can start the application by running the following command at the root of the project:
+
+```bash
+npm run start
+```
+
+This will run both the client and server:
+- The client will be available at http://localhost:4200.
+- The server will be available at http://localhost:3000.
 
 ## Contributing
 
