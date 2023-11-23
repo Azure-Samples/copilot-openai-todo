@@ -39,6 +39,9 @@
     "collectCoverageFrom": [
       "lib/**/*.js"
     ],
-    "verbose": true
+    "verbose": true,
+    "roots": [
+      "<rootDir>/src"
+    ]
   }
 }
