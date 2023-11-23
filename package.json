@@ -4,7 +4,7 @@
   "description": "A sample application demonstrating Copilot assistance for developing a Node.js Todo app with Azure Cosmos DB and Azure OpenAI",
   "private": true,
   "scripts": {
-    "start": "concurrently npm:dev:* --kill-others",
+    "start": "concurrently npm:start:* --kill-others",
     "start:server": "npm start --workspace=server",
     "start:client": "npm start --workspace=client",
     "test": "npm test --workspace=server",
