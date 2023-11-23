@@ -94,7 +94,7 @@ export class AppComponent {
 
   async addTask(data: AddTask) {
     this.loading = true;
-    await addTask(data.title, data.useAiPlanner);
+    await addTask(data.title);
     await this.updateTasks();
     this.loading = false;
   }
