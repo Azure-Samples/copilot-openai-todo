@@ -29,13 +29,13 @@
 		"vscode": {
 			"extensions": [
 				"GitHub.copilot",
-				"GitHub.copilot-labs",
+				"GitHub.copilot-chat",
 				"humao.rest-client",
 				"ms-azuretools.vscode-bicep",
 				"ms-azuretools.vscode-cosmosdb",
-				"ms-azuretools.vscode-bicep",
 				"EditorConfig.EditorConfig",
-				"IronGeek.vscode-env"
+				"IronGeek.vscode-env",
+				"Angular.ng-template"
 			]
 		}
 	},
