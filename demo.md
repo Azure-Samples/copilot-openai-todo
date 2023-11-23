@@ -154,12 +154,10 @@ As he dives into the world of AI-infused applications, the suspense lingers—wi
 - create a github actions for a CI that runs my tests using Node 18
   * Can you make it so the tests run on Windows, Linux and Mac?
 
-(
-  ### New component (loader?)
+### (New component: if extra time)
 
-  - how can I create a new component with the angular CLI?
-    * what if I don't want to create a new directory?
-)
+- how can I create a new component with the angular CLI?
+  * what if I don't want to create a new directory?
 
 ### Show final result
 
