@@ -23,6 +23,7 @@ router.get('/users/:userId/tasks', async function(req, res) {
 router.post('/users/:userId/tasks', async function(req, res) {
   try {
     const { userId } = req.params;
+    const { useAiPlanner } = req.body;
     const task = {
       ...req.body,
       userId,
@@ -34,8 +35,12 @@ router.post('/users/:userId/tasks', async function(req, res) {
       return res.status(400).json({ error: 'Task title is required' });
     }
 
-    const createdTask = await DbService.getInstance().createTask(task);
-    res.json(createdTask);
+    if (useAiPlanner) {
+      // TODO: Use the AI planner to create the task
+    } else {
+      const createdTask = await DbService.getInstance().createTask(task);
+      res.json(createdTask);
+    }
 
   } catch (error: any) {
     res.status(500).json({ error: error?.message || 'Internal server error' });
@@ -45,7 +50,7 @@ router.post('/users/:userId/tasks', async function(req, res) {
 router.get('/tasks/:taskId', async function(req, res) {
   try {
     const { taskId } = req.params;
-    
+
     const task = await DbService.getInstance().getTask(taskId);
 
     res.json(task);
@@ -57,7 +62,7 @@ router.get('/tasks/:taskId', async function(req, res) {
 router.patch('/tasks/:taskId', async function(req, res) {
   try {
     const { taskId } = req.params;
-    
+
     const task = await DbService.getInstance().getTask(taskId);
     task.completed = Boolean(req.body?.completed);
 
@@ -72,7 +77,7 @@ router.patch('/tasks/:taskId', async function(req, res) {
 router.delete('/tasks/:taskId', async function(req, res) {
   try {
     const { taskId } = req.params;
-    
+
     await DbService.getInstance().deleteTask(taskId);
 
     res.sendStatus(204);
