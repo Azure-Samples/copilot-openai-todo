@@ -63,7 +63,7 @@ export class AppComponent {
       // Fallback route
       return this.navigate('/tasks/active');
     }
-  
+
     document.title = `Todo - ${routeData.title}`;
 
     switch (path) {
@@ -94,7 +94,7 @@ export class AppComponent {
 
   async addTask(data: AddTask) {
     this.loading = true;
-    await addTask(data.title);
+    await addTask(data.title, data.useAiPlanner);
     await this.updateTasks();
     this.loading = false;
   }
