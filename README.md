@@ -2,9 +2,14 @@
 
 This project is an example Todo app implementation, that aims to showcase how to use [GitHub Copilot](https://copilot.github.com/) to build an AI-powered todo app using [Azure OpenAI](https://azure.microsoft.com/products/ai-services/openai-service) and [Azure Cosmos DB](https://azure.microsoft.com/services/cosmos-db/).
 
+**The completed application is located in the [completed branch](https://github.com/Azure-Samples/copilot-openai-todo/tree/completed).**
+
 ## Prerequisites
-- Node.js v18+
-- An Azure account ([sign up for free here](https://azure.microsoft.com/free/?WT.mc_id=javascript-0000-yolasors))
+- **Node.js v18+**
+- **Docker v20+**
+- **Azure account**. If you're new to Azure, [get an Azure account for free](https://azure.microsoft.com/free/?WT.mc_id=javascript-0000-yolasors) to get free Azure credits to get started.
+- **Azure subscription with access enabled for the Azure OpenAI service**. You can request access with [this form](https://aka.ms/oaiapply).
+  * Alternatively, you can use an [OpenAI API key](https://platform.openai.com/docs/api-reference/authentication) instead of the Azure OpenAI service.
 
 You can use [GitHub Codespaces](https://github.com/features/codespaces) to work on this project directly from your browser: select the **Code** button, then the **Codespaces** tab and click on **Create Codespaces on main**.
 
