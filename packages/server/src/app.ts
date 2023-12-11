@@ -1,8 +1,8 @@
-const express = require('express');
-const cors = require('cors');
-const pino = require('pino-http');
-const router = require('./routes/root');
-const dotenv = require('dotenv');
+import express from 'express';
+import cors from 'cors';
+import pino from 'pino-http';
+import router from './routes/root';
+import dotenv from 'dotenv';
 dotenv.config({ path: '../../.env' });
 
 const app = express();
