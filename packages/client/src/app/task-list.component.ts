@@ -4,10 +4,9 @@ import { Task } from './task';
 import { TaskItemComponent } from './task-item.component';
 
 @Component({
-  selector: 'app-task-list',
-  standalone: true,
-  imports: [CommonModule, TaskItemComponent],
-  template: `
+    selector: 'app-task-list',
+    imports: [CommonModule, TaskItemComponent],
+    template: `
     <app-task-item 
       *ngFor="let task of tasks; trackBy: trackByTitle"
       [task]="task"
@@ -15,7 +14,7 @@ import { TaskItemComponent } from './task-item.component';
     ></app-task-item>
     <div class="count">{{ tasks.length }} item<span *ngIf="tasks.length !== 1">s</span></div>
   `,
-  styles: [`
+    styles: [`
     :host {
       width: 100%;
       max-width: 400px;

@@ -2,13 +2,12 @@ import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'app-loader',
-  standalone: true,
-  imports: [CommonModule],
-  template: `
+    selector: 'app-loader',
+    imports: [CommonModule],
+    template: `
     <div [class.loading]="loading" class="loader"></div>
   `,
-  styles: [`
+    styles: [`
     .loader {
       width: 400px;
       height: 4px;
@@ -39,7 +38,7 @@ import { CommonModule } from '@angular/common';
         transform-origin: center right;
       }
     }
-  `],
+  `]
 })
 export class LoaderComponent {
   @Input() loading: boolean = false;

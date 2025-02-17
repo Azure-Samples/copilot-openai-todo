@@ -11,18 +11,18 @@
   "private": true,
   "type": "module",
   "dependencies": {
-    "@angular/common": "^18.2.13",
-    "@angular/compiler": "^18.2.13",
-    "@angular/core": "^18.2.13",
-    "@angular/platform-browser": "^18.2.13",
+    "@angular/common": "^19.1.6",
+    "@angular/compiler": "^19.1.6",
+    "@angular/core": "^19.1.6",
+    "@angular/platform-browser": "^19.1.6",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",
-    "zone.js": "~0.14.2"
+    "zone.js": "~0.15.0"
   },
   "devDependencies": {
-    "@angular/build": "^18.2.14",
-    "@angular/cli": "~18.2.14",
-    "@angular/compiler-cli": "^18.2.13",
+    "@angular/build": "^19.1.7",
+    "@angular/cli": "~19.1.7",
+    "@angular/compiler-cli": "^19.1.6",
     "typescript": "~5.5.4"
   },
   "browserslist": [

@@ -9,17 +9,16 @@ import { LoaderComponent } from './loader.component';
 import { AddTask } from './add-task';
 
 @Component({
-  selector: 'app-root',
-  standalone: true,
-  imports: [CommonModule, TaskAddComponent, TaskListComponent, TaskFilterComponent, LoaderComponent],
-  template: `
+    selector: 'app-root',
+    imports: [CommonModule, TaskAddComponent, TaskListComponent, TaskFilterComponent, LoaderComponent],
+    template: `
     <h1>TODO</h1>
     <app-task-add (added)="addTask($event)" [disabled]="loading"></app-task-add>
     <app-loader [loading]="loading"></app-loader>
     <app-task-list [tasks]="tasks" (toggleCompleted)="toggleTaskCompleted($event)"></app-task-list>
     <app-task-filter [filter]="currentFilter" (filterChange)="filterTasks($event)"></app-task-filter>
   `,
-  styles: [`
+    styles: [`
     :host {
       display: flex;
       height: 100%;
@@ -39,7 +38,7 @@ import { AddTask } from './add-task';
       background-clip: text;
       -webkit-text-fill-color: transparent;
     }
-  `],
+  `]
 })
 export class AppComponent {
   loading: boolean = false;

@@ -3,16 +3,15 @@ import { CommonModule } from '@angular/common';
 import { Task } from './task';
 
 @Component({
-  selector: 'app-task-item',
-  standalone: true,
-  imports: [CommonModule],
-  template: `
+    selector: 'app-task-item',
+    imports: [CommonModule],
+    template: `
     <label>
       <input type="checkbox" [checked]="task.completed" (change)="toggleCompleted.emit(!task.completed)" />
       {{ task.title }}
     </label>
   `,
-  styles: [`
+    styles: [`
     :host {
       display: block;
       padding: 10px;
@@ -69,7 +68,7 @@ import { Task } from './task';
       outline-offset: 2px;
       outline: 2px solid #29f;
     }
-  `],
+  `]
 })
 export class TaskItemComponent {
   @Input() task!: Task;

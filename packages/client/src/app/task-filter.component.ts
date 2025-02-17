@@ -3,10 +3,9 @@ import { CommonModule } from '@angular/common';
 import { TaskFilter } from './task.service';
 
 @Component({
-  selector: 'app-task-filter',
-  standalone: true,
-  imports: [CommonModule],
-  template: `
+    selector: 'app-task-filter',
+    imports: [CommonModule],
+    template: `
     <label for="filter">Show tasks:</label>
     <select id="filter" [value]="filter" (change)="filterTasks($event)">
       <option value="all">All</option>
@@ -14,7 +13,7 @@ import { TaskFilter } from './task.service';
       <option value="completed">Completed</option>
     </select>
   `,
-  styles: [`
+    styles: [`
     :host {
       display: flex;
       justify-content: space-between;

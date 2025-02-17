@@ -3,15 +3,14 @@ import { CommonModule } from '@angular/common';
 import { AddTask } from './add-task';
 
 @Component({
-  selector: 'app-task-add',
-  standalone: true,
-  imports: [CommonModule],
-  template: `
+    selector: 'app-task-add',
+    imports: [CommonModule],
+    template: `
     <div class="input-container">
       <input type="text" placeholder="What needs to be done?" (change)="addTask($event)" [disabled]="disabled"/>
     </div>
   `,
-  styles: [`
+    styles: [`
     :host {
       width: 100%;
       max-width: 400px;
