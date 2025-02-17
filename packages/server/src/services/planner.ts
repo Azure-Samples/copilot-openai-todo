@@ -3,6 +3,7 @@ import path from "path";
 import { createJsonTranslator, createLanguageModel } from "typechat";
 import { TaskPlanner } from "../models/task-planner-schema";
 import { OpenAiService } from "./openai";
+import { createTypeScriptJsonValidator } from "typechat/ts";
 
 export class TaskPlannerService {
   private static instance: TaskPlannerService;
@@ -30,11 +31,12 @@ export class TaskPlannerService {
     const model = createLanguageModel({
       OPENAI_API_KEY: openAiToken,
       OPENAI_ENDPOINT: endpoint,
-      OPENAI_MODEL: process.env.AZURE_OPENAI_CHATGPT_MODEL || "gpt-35-turbo",
+      OPENAI_MODEL: process.env.AZURE_OPENAI_CHATGPT_MODEL || "gpt-4",
     });
 
     const schema = fs.readFileSync(path.join(__dirname, "../models/task-planner-schema.ts"), "utf8");
-    const translator = createJsonTranslator<TaskPlanner>(model, schema, "TaskPlanner");
+    const validator = createTypeScriptJsonValidator<TaskPlanner>(schema, "TaskPlanner");
+    const translator = createJsonTranslator(model, validator);
 
     // Get the plan
     const response = await translator.translate(goal);
