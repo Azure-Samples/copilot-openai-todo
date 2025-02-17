@@ -9,6 +9,10 @@ import { AddTask } from './add-task';
     <div class="input-container">
       <input type="text" placeholder="What needs to be done?" (change)="addTask($event)" [disabled]="disabled"/>
     </div>
+    <label>
+      <input type="checkbox" (change)="toggleAIPlanner($event)" [disabled]="disabled">
+      Enable AI Planner
+    </label>
   `,
     styles: [`
     :host {
@@ -52,10 +56,17 @@ export class TaskAddComponent {
   @Input() disabled: boolean = false;
   @Output() added = new EventEmitter<AddTask>();
 
+  useAIPlanner: boolean = false;
+
   addTask(event: Event) {
     const input = event.target as HTMLInputElement;
     const title = input.value;
     input.value = '';
-    this.added.emit({ title });
+    this.added.emit({ title, useAiPlanner: this.useAIPlanner });
+  }
+
+  toggleAIPlanner(event: Event) {
+    const target = event.target as HTMLInputElement;
+    this.useAIPlanner = target.checked;
   }
 }
