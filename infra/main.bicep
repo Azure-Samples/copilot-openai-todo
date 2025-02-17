@@ -41,7 +41,7 @@ param openAiSkuName string = 'S0'
 param webAppLocation string
 
 param chatGptDeploymentName string // Set in main.parameters.json
-param chatGptDeploymentCapacity int = 30
+param chatGptDeploymentCapacity int = 5
 param chatGptModelName string // Set in main.parameters.json
 param chatGptModelVersion string // Set in main.parameters.json
 
