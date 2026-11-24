@@ -1,10 +1,9 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 import { AddTask } from './add-task';
 
 @Component({
     selector: 'app-task-add',
-    imports: [CommonModule],
+    changeDetection: ChangeDetectionStrategy.Eager,
     template: `
     <div class="input-container">
       <input type="text" placeholder="What needs to be done?" (change)="addTask($event)" [disabled]="disabled"/>

@@ -2,7 +2,7 @@
 
 # Build Node.js app
 # ------------------------------------
-FROM node:20-alpine as build
+FROM node:24-alpine AS build
 WORKDIR /app
 COPY ./package*.json ./
 COPY ./packages/server ./packages/server
@@ -11,7 +11,7 @@ RUN npm run build --workspace=server
 
 # Run Node.js app
 # ------------------------------------
-FROM node:20-alpine
+FROM node:24-alpine
 ENV NODE_ENV=production
 
 WORKDIR /app

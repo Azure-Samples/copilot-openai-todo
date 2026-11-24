@@ -1,10 +1,9 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 import { TaskFilter } from './task.service';
 
 @Component({
     selector: 'app-task-filter',
-    imports: [CommonModule],
+    changeDetection: ChangeDetectionStrategy.Eager,
     template: `
     <label for="filter">Show tasks:</label>
     <select id="filter" [value]="filter" (change)="filterTasks($event)">

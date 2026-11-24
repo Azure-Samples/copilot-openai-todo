@@ -5,7 +5,7 @@ This project is an example Todo app implementation, that aims to showcase how to
 **The completed application is located in the [completed branch](https://github.com/Azure-Samples/copilot-openai-todo/tree/completed).**
 
 ## Prerequisites
-- **Node.js v20+**
+- **Node.js 24 LTS** (24.15.0 or later in the 24.x series; Node.js 26+ is also supported)
 - **Docker v20+**
 - **Azure account**. If you're new to Azure, [get an Azure account for free](https://azure.microsoft.com/free/?WT.mc_id=javascript-0000-yolasors) to get free Azure credits to get started.
 - **Azure subscription with access enabled for the Azure OpenAI service**. You can request access with [this form](https://aka.ms/oaiapply).
@@ -18,7 +18,7 @@ You can also use the [Dev Containers extension for VS Code](https://aka.ms/vscod
 After you cloned or opened the project in your dev environment, run the following command to install the dependencies:
 
 ```bash
-npm install
+npm ci
 ```
 
 ## Project details
@@ -33,6 +33,8 @@ packages/         # The different parts of our app
 +- client/        # The website client
 package.json      # NPM workspace configuration
 ```
+
+The client uses TypeScript 6 for Angular 22. The server ships TypeScript 5.9 because the completed planner's TypeChat validator uses the compiler at runtime. Newer TypeChat releases require TypeScript 7, which is outside `ts-jest`'s direct compiler peer range.
 
 ## How to build the project
 

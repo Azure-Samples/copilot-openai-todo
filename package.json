@@ -16,11 +16,11 @@
     "packages/*"
   ],
   "devDependencies": {
-    "concurrently": "^9.1.2",
-    "rimraf": "^6.0.1"
+    "concurrently": "^10.0.7",
+    "rimraf": "^6.1.4"
   },
   "engines": {
-    "node": ">=20.0.0",
+    "node": "^24.15.0 || >=26.0.0",
     "npm": ">=10.0.0"
   }
 }
