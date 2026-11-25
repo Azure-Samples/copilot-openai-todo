@@ -11,19 +11,19 @@
   "private": true,
   "type": "module",
   "dependencies": {
-    "@angular/common": "^19.1.6",
-    "@angular/compiler": "^19.1.6",
-    "@angular/core": "^19.1.6",
-    "@angular/platform-browser": "^19.1.6",
-    "rxjs": "~7.5.0",
-    "tslib": "^2.3.0",
-    "zone.js": "~0.15.0"
+    "@angular/common": "^22.3.0",
+    "@angular/compiler": "^22.3.0",
+    "@angular/core": "^22.3.0",
+    "@angular/platform-browser": "^22.3.0",
+    "rxjs": "~7.8.2",
+    "tslib": "^2.9.1",
+    "zone.js": "~0.16.3"
   },
   "devDependencies": {
-    "@angular/build": "^19.1.7",
-    "@angular/cli": "~19.1.7",
-    "@angular/compiler-cli": "^19.1.6",
-    "typescript": "~5.5.4"
+    "@angular/build": "^22.3.0",
+    "@angular/cli": "~22.3.0",
+    "@angular/compiler-cli": "^22.3.0",
+    "typescript": "~6.0.3"
   },
   "browserslist": [
     "last 1 Chrome version",

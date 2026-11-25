@@ -1,9 +1,8 @@
-import { Component, Input } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 
 @Component({
     selector: 'app-loader',
-    imports: [CommonModule],
+    changeDetection: ChangeDetectionStrategy.Eager,
     template: `
     <div [class.loading]="loading" class="loader"></div>
   `,

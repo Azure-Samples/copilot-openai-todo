@@ -1,10 +1,9 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 import { Task } from './task';
 
 @Component({
     selector: 'app-task-item',
-    imports: [CommonModule],
+    changeDetection: ChangeDetectionStrategy.Eager,
     template: `
     <label>
       <input type="checkbox" [checked]="task.completed" (change)="toggleCompleted.emit(!task.completed)" />

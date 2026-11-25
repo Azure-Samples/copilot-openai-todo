@@ -1,18 +1,16 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 import { Task } from './task';
 import { TaskItemComponent } from './task-item.component';
 
 @Component({
     selector: 'app-task-list',
-    imports: [CommonModule, TaskItemComponent],
+    imports: [TaskItemComponent],
+    changeDetection: ChangeDetectionStrategy.Eager,
     template: `
-    <app-task-item 
-      *ngFor="let task of tasks; trackBy: trackByTitle"
-      [task]="task"
-      (toggleCompleted)="toggleCompleted.emit(task)"
-    ></app-task-item>
-    <div class="count">{{ tasks.length }} item<span *ngIf="tasks.length !== 1">s</span></div>
+    @for (task of tasks; track task) {
+      <app-task-item [task]="task" (toggleCompleted)="toggleCompleted.emit(task)"></app-task-item>
+    }
+    <div class="count">{{ tasks.length }} item@if (tasks.length !== 1) {<span>s</span>}</div>
   `,
     styles: [`
     :host {
@@ -35,8 +33,4 @@ import { TaskItemComponent } from './task-item.component';
 export class TaskListComponent {
   @Input() tasks: Task[] = [];
   @Output() toggleCompleted = new EventEmitter<Task>();
-
-  trackByTitle(_index: number, task: Task) {
-    return task.title;
-  }
 }

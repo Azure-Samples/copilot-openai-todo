@@ -1,5 +1,4 @@
-import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { Task } from './task';
 import { getTasks, addTask, setTaskCompleted, TaskFilter } from './task.service';
 import { TaskFilterComponent } from './task-filter.component';
@@ -10,7 +9,8 @@ import { AddTask } from './add-task';
 
 @Component({
     selector: 'app-root',
-    imports: [CommonModule, TaskAddComponent, TaskListComponent, TaskFilterComponent, LoaderComponent],
+    imports: [TaskAddComponent, TaskListComponent, TaskFilterComponent, LoaderComponent],
+    changeDetection: ChangeDetectionStrategy.Eager,
     template: `
     <h1>TODO</h1>
     <app-task-add (added)="addTask($event)" [disabled]="loading"></app-task-add>
